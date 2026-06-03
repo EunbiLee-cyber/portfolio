@@ -1,0 +1,1934 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>Portfolio — slides 4–16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+
+<style>
+:root {
+  --ink:        #0f1115;
+  --ink-2:      #2a2f37;
+  --ink-3:      #5b6473;
+  --ink-4:      #8a93a3;
+  --line:       #e6e8ec;
+  --line-2:     #eef0f3;
+  --bg:         #ffffff;
+  --bg-2:       #f7f8fa;
+  --bg-3:       #f1f3f6;
+
+  /* Per-project accents (changed by data-accent on each section) */
+  --accent:        #b175ff;
+  --accent-soft:   #f1e4ff;
+  --accent-softer: #faf3ff;
+  --accent-ink:    #6022bd;
+
+  --type-title:    60px;
+  --type-headline: 48px;
+  --type-h2:       40px;
+  --type-h3:       30px;
+  --type-body:     26px;
+  --type-small:    24px;
+  --type-num-xl:   140px;
+  --type-num-lg:   96px;
+  --type-num-md:   64px;
+
+  --pad-x:         100px;
+  --pad-top:       90px;
+  --pad-bottom:    80px;
+
+  --radius-lg:     24px;
+  --radius-md:     18px;
+  --radius-sm:     12px;
+
+  --shadow-1:      0 1px 2px rgba(15,17,21,.04), 0 6px 18px rgba(15,17,21,.06);
+  --shadow-2:      0 2px 4px rgba(15,17,21,.05), 0 18px 40px rgba(15,17,21,.08);
+}
+
+html, body { margin: 0; padding: 0; background: #d9dde3; color: var(--ink); }
+
+body {
+  font-family: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+}
+
+deck-stage section {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', 'Pretendard', sans-serif;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Per-project palettes */
+section[data-accent="purple"] {
+  --accent:        #b175ff;
+  --accent-soft:   #ecdcff;
+  --accent-softer: #f7eeff;
+  --accent-ink:    #5b1fb8;
+}
+section[data-accent="sky"] {
+  --accent:        #1abcfe;
+  --accent-soft:   #c9eefd;
+  --accent-softer: #eafaff;
+  --accent-ink:    #086a92;
+}
+section[data-accent="green"] {
+  --accent:        #40a07b;
+  --accent-soft:   #c8e8d8;
+  --accent-softer: #ebf7f1;
+  --accent-ink:    #1b6647;
+}
+
+/* ============ shared atoms ============ */
+.frame {
+  position: absolute; inset: 0;
+  padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+  display: flex; flex-direction: column;
+  box-sizing: border-box;
+}
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: var(--type-small);
+  font-weight: 600;
+  color: var(--accent-ink);
+  letter-spacing: 0;
+}
+.eyebrow::before {
+  content: ""; width: 10px; height: 10px; border-radius: 99px;
+  background: var(--accent);
+}
+.eyebrow.flat::before { display: none; }
+.eyebrow.chip {
+  background: var(--accent-softer);
+  border: 1px solid var(--accent-soft);
+  padding: 8px 18px;
+  border-radius: 99px;
+}
+
+.title {
+  font-size: var(--type-title);
+  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0;
+  color: var(--ink);
+}
+.headline {
+  font-size: var(--type-headline);
+  line-height: 1.22;
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  margin: 0;
+  color: var(--ink);
+}
+.h2 {
+  font-size: var(--type-h2);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.h3 {
+  font-size: var(--type-h3);
+  line-height: 1.3;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+.body {
+  font-size: var(--type-body);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--ink-2);
+  margin: 0;
+}
+.small {
+  font-size: var(--type-small);
+  line-height: 1.5;
+  color: var(--ink-3);
+  margin: 0;
+}
+.label {
+  font-size: var(--type-small);
+  font-weight: 600;
+  color: var(--ink-3);
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.muted { color: var(--ink-3); }
+.dim   { color: var(--ink-4); }
+
+.card {
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  padding: 32px;
+  box-sizing: border-box;
+}
+.card.flat {
+  background: var(--bg-2);
+  box-shadow: none;
+}
+
+.accent-pill {
+  display: inline-flex; align-items: center;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  font-size: var(--type-small);
+  padding: 8px 18px;
+  border-radius: 99px;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.accent-num {
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* page number footer */
+.page-foot {
+  position: absolute;
+  left: var(--pad-x); right: var(--pad-x); bottom: 36px;
+  display: flex; justify-content: space-between;
+  font-size: 22px; color: var(--ink-4);
+}
+.page-foot .seg {
+  display: flex; gap: 14px; align-items: center;
+}
+.page-foot .seg span.dot {
+  width: 6px; height: 6px; border-radius: 99px; background: var(--accent);
+}
+
+/* ============ slide-specific helpers (loose, reusable) ============ */
+.flex-row { display: flex; gap: 28px; }
+.flex-col { display: flex; flex-direction: column; gap: 28px; }
+.grow { flex: 1 1 0; min-width: 0; }
+.center { display: flex; align-items: center; justify-content: center; }
+
+/* meta table on cover slides */
+.meta-table {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  row-gap: 16px;
+  column-gap: 28px;
+  font-size: var(--type-small);
+  margin-top: 8px;
+}
+.meta-table dt {
+  color: var(--ink-4);
+  font-weight: 500;
+}
+.meta-table dd {
+  margin: 0;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+/* impact metric tiles */
+.metric {
+  background: var(--bg-2);
+  border-radius: var(--radius-md);
+  padding: 28px 32px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.metric .v {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.metric .v.accent { color: var(--accent); }
+.metric .k {
+  font-size: var(--type-small);
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+/* before / after tag */
+.tag {
+  display: inline-flex; align-items: center;
+  font-size: var(--type-small);
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: var(--bg-3);
+  color: var(--ink-3);
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.tag.accent {
+  background: var(--accent-softer);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent-soft);
+}
+
+/* arrow */
+.arrow-r {
+  width: 36px; height: 2px; background: var(--ink-3);
+  position: relative; flex: 0 0 auto;
+}
+.arrow-r::after {
+  content: ""; position: absolute; right: 0; top: -5px;
+  width: 12px; height: 12px;
+  border-top: 2px solid var(--ink-3);
+  border-right: 2px solid var(--ink-3);
+  transform: rotate(45deg) translate(-1px, 1px);
+}
+
+/* quote card */
+.quote {
+  position: relative;
+  background: var(--bg-2);
+  border-radius: var(--radius-md);
+  padding: 28px 32px 26px 36px;
+  font-size: var(--type-body);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.quote::before {
+  content: "\201C";
+  position: absolute; left: 14px; top: -4px;
+  font-size: 64px; line-height: 1;
+  font-weight: 700; color: var(--accent);
+}
+.quote .who {
+  margin-top: 14px;
+  font-size: var(--type-small);
+  color: var(--ink-4);
+  font-weight: 500;
+}
+
+/* speech bubble (callout, like reference) */
+.bubble {
+  position: relative;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow-1);
+}
+.bubble.accent {
+  background: var(--accent-softer);
+  border-color: var(--accent-soft);
+  box-shadow: none;
+}
+.bubble .head {
+  font-size: var(--type-body);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.bubble .body {
+  font-size: var(--type-small);
+  color: var(--ink-3);
+}
+.bubble .who {
+  margin-top: 12px;
+  text-align: right;
+  font-size: var(--type-small);
+  color: var(--ink-4);
+}
+
+/* process pill chain */
+.flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.flow .step {
+  flex: 1 1 0;
+  background: var(--bg-2);
+  padding: 20px 24px;
+  display: flex; flex-direction: column; gap: 6px;
+  position: relative;
+  border-radius: 14px;
+}
+.flow .step + .step { margin-left: 18px; }
+.flow .step::after {
+  content: "";
+  position: absolute;
+  right: -16px; top: 50%;
+  width: 14px; height: 2px;
+  background: var(--ink-4);
+  transform: translateY(-1px);
+}
+.flow .step:last-child::after { display: none; }
+.flow .step .n {
+  font-size: var(--type-small);
+  font-weight: 700;
+  color: var(--accent);
+}
+.flow .step .t {
+  font-size: var(--type-small);
+  font-weight: 600;
+  color: var(--ink);
+}
+.flow .step .d {
+  font-size: 22px;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+
+/* highlight chip for inline keywords */
+.hl { color: var(--accent-ink); font-weight: 600; }
+
+/* dashed connector */
+.dashed {
+  border-top: 2px dashed var(--accent);
+  height: 0;
+}
+</style>
+
+<script src="deck-stage.js"></script>
+</head>
+<body>
+
+<!-- Tweaks panel — color overrides per project section -->
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<div id="tweaks-root"></div>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "p1Accent": "#b175ff",
+  "p2Accent": "#1abcfe",
+  "p3Accent": "#40a07b",
+  "titleWeight": 800,
+  "cardStyle": "shadow",
+  "showPageNum": true
+}/*EDITMODE-END*/;
+
+// Helper: tint helpers - derive soft / softer / ink from hex
+function hexToRgb(hex) {
+  const m = hex.replace('#','').match(/.{2}/g);
+  return m ? m.map(h => parseInt(h, 16)) : [0,0,0];
+}
+function rgbToHex(r,g,b) {
+  return '#' + [r,g,b].map(v => Math.round(v).toString(16).padStart(2,'0')).join('');
+}
+function mix(c1, c2, t) {
+  const a = hexToRgb(c1), b = hexToRgb(c2);
+  return rgbToHex(a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t);
+}
+function darken(c, t) { return mix(c, '#000000', t); }
+function lighten(c, t) { return mix(c, '#ffffff', t); }
+
+function applyAccents(t) {
+  const sets = [
+    ['purple', t.p1Accent],
+    ['sky',    t.p2Accent],
+    ['green',  t.p3Accent],
+  ];
+  let css = '';
+  for (const [name, accent] of sets) {
+    const soft   = lighten(accent, 0.65);
+    const softer = lighten(accent, 0.88);
+    const ink    = darken(accent, 0.45);
+    css += `section[data-accent="${name}"]{`
+        +  `--accent:${accent};`
+        +  `--accent-soft:${soft};`
+        +  `--accent-softer:${softer};`
+        +  `--accent-ink:${ink};}`;
+  }
+  // title weight
+  css += `.title,.headline{font-weight:${t.titleWeight};}`;
+  // card style
+  if (t.cardStyle === 'flat') {
+    css += `.card{box-shadow:none;background:var(--bg-2);}`;
+  } else if (t.cardStyle === 'border') {
+    css += `.card{box-shadow:none;background:#fff;border:1px solid var(--line);}`;
+  }
+  // page num
+  if (!t.showPageNum) {
+    css += `.page-foot{display:none;}`;
+  }
+  let style = document.getElementById('__tweak-style');
+  if (!style) {
+    style = document.createElement('style');
+    style.id = '__tweak-style';
+    document.head.appendChild(style);
+  }
+  style.textContent = css;
+}
+
+function TweaksApp() {
+  const { TweaksPanel, useTweaks, TweakSection, TweakColor, TweakRadio, TweakToggle, TweakSlider } = window;
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  React.useEffect(() => { applyAccents(t); }, [t]);
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="프로젝트 강조색">
+        <TweakColor label="Project 1 · 보라" value={t.p1Accent}
+          options={['#b175ff','#8b5cf6','#a855f7','#c084fc']}
+          onChange={v => setTweak('p1Accent', v)} />
+        <TweakColor label="Project 2 · 하늘" value={t.p2Accent}
+          options={['#1abcfe','#0ea5e9','#06b6d4','#38bdf8']}
+          onChange={v => setTweak('p2Accent', v)} />
+        <TweakColor label="Project 3 · 초록" value={t.p3Accent}
+          options={['#40a07b','#10b981','#22c55e','#16a34a']}
+          onChange={v => setTweak('p3Accent', v)} />
+      </TweakSection>
+      <TweakSection label="레이아웃">
+        <TweakRadio label="카드 스타일" value={t.cardStyle}
+          options={['shadow','flat','border']}
+          onChange={v => setTweak('cardStyle', v)} />
+        <TweakSlider label="타이틀 굵기" value={t.titleWeight} min={600} max={900} step={100}
+          onChange={v => setTweak('titleWeight', v)} />
+        <TweakToggle label="페이지 번호 표시" value={t.showPageNum}
+          onChange={v => setTweak('showPageNum', v)} />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+// wait for tweaks helpers to load
+function waitForTweaks(cb) {
+  if (window.TweaksPanel && window.useTweaks) return cb();
+  setTimeout(() => waitForTweaks(cb), 50);
+}
+waitForTweaks(() => {
+  applyAccents(TWEAK_DEFAULTS);
+  ReactDOM.createRoot(document.getElementById('tweaks-root'))
+    .render(<TweaksApp />);
+});
+</script>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ============================================================
+     LOCAL STYLES FOR SPECIFIC SLIDE VISUALS
+============================================================ -->
+<style>
+/* Funnel / cascade chart used on context slides */
+.funnel {
+  position: relative;
+  background: var(--bg-2);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  height: 360px;
+  box-sizing: border-box;
+}
+.funnel .y {
+  position: absolute;
+  font-size: 22px;
+  color: var(--ink-4);
+  right: 28px;
+}
+.funnel .axis {
+  position: absolute;
+  left: 80px; right: 28px; bottom: 56px;
+  height: 1px; background: var(--ink-4); opacity: .4;
+}
+.funnel .ticks {
+  position: absolute; left: 80px; right: 28px; bottom: 18px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  font-size: 22px; color: var(--ink-4);
+}
+.funnel .ticks span { white-space: nowrap; }
+.funnel .ticks span:nth-child(1) { text-align: left; }
+.funnel .ticks span:nth-child(2),
+.funnel .ticks span:nth-child(3) { text-align: center; }
+.funnel .ticks span:nth-child(4) { text-align: right; }
+.funnel svg { position: absolute; inset: 28px 28px 56px 80px; width: calc(100% - 108px); }
+.funnel .label-pt {
+  position: absolute;
+  font-size: 22px;
+  color: var(--accent-ink);
+  background: var(--accent-softer);
+  border: 1px solid var(--accent-soft);
+  border-radius: 99px;
+  padding: 4px 12px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* Vertical bar chart pair (before/after) */
+.barchart {
+  background: var(--bg-2);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  display: flex; align-items: flex-end; gap: 24px;
+  height: 340px;
+  box-sizing: border-box;
+  position: relative;
+}
+.barchart .bar-col {
+  flex: 1 1 0;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  height: 100%;
+  justify-content: flex-end;
+}
+.barchart .bar {
+  width: 76px; border-radius: 10px 10px 0 0;
+  background: var(--ink-4);
+}
+.barchart .bar.accent { background: var(--accent); }
+.barchart .bar-lbl {
+  font-size: var(--type-small);
+  color: var(--ink-3);
+  font-weight: 500;
+}
+.barchart .bar-val {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.barchart .bar-val.accent { color: var(--accent); }
+
+/* Venn / overlap diagram */
+.venn {
+  position: relative;
+  width: 460px; height: 360px;
+  margin: 0 auto;
+}
+.venn .circ {
+  position: absolute;
+  width: 240px; height: 240px;
+  border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.3;
+}
+.venn .c1 { left: 0; top: 0; background: rgba(177,117,255,0.18); color: var(--accent-ink); }
+.venn .c2 { right: 0; top: 0; background: rgba(177,117,255,0.18); color: var(--accent-ink); }
+.venn .c3 { left: 110px; bottom: 0; background: rgba(177,117,255,0.18); color: var(--accent-ink); }
+.venn .core {
+  position: absolute;
+  left: 50%; top: 52%;
+  transform: translate(-50%, -50%);
+  background: var(--accent);
+  color: white;
+  width: 130px; height: 130px;
+  border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800;
+  font-size: 22px;
+  text-align: center;
+  line-height: 1.2;
+  box-shadow: 0 8px 24px rgba(177,117,255,0.35);
+  z-index: 2;
+}
+
+/* Vicious cycle ring */
+.cycle {
+  position: relative;
+  width: 540px; height: 540px;
+  margin: 0 auto;
+}
+.cycle .node {
+  position: absolute;
+  width: 200px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-1);
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-size: var(--type-small);
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.cycle .node .nbr {
+  display:block;
+  color: var(--accent);
+  font-size: 22px;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.cycle .center {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px; height: 200px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1.3;
+  box-shadow: 0 8px 30px rgba(64,160,123,.28);
+}
+
+/* Gauge */
+.gauge {
+  position: relative;
+  width: 220px; height: 130px;
+  margin: 0 auto;
+}
+.gauge .num {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.gauge .sub {
+  position: absolute;
+  left: 0; right: 0; bottom: -30px;
+  text-align: center;
+  font-size: var(--type-small);
+  color: var(--ink-3);
+}
+
+/* 2-column comparison table */
+.cmp-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.cmp-table th, .cmp-table td {
+  text-align: left;
+  padding: 18px 20px;
+  font-size: var(--type-small);
+  vertical-align: top;
+  line-height: 1.45;
+}
+.cmp-table thead th {
+  font-weight: 700;
+  color: var(--ink-3);
+  font-size: var(--type-small);
+  border-bottom: 1px solid var(--line);
+}
+.cmp-table thead th.before { color: var(--ink-3); }
+.cmp-table thead th.after { color: var(--accent-ink); }
+.cmp-table tbody tr td { border-bottom: 1px solid var(--line-2); }
+.cmp-table tbody tr:last-child td { border-bottom: none; }
+.cmp-table td.label-col { color: var(--ink-4); font-weight: 600; width: 220px; }
+.cmp-table td.after-col { color: var(--ink); font-weight: 600; }
+.cmp-table .delta {
+  display:inline-block;
+  margin-left: 8px;
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Numbered list */
+.numbered {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.numbered li {
+  display: flex; gap: 16px;
+  font-size: var(--type-body);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.numbered li .n {
+  flex: 0 0 36px;
+  width: 36px; height: 36px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* trade off table */
+.tradeoff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+}
+.tradeoff > div {
+  padding: 28px 32px;
+}
+.tradeoff .col-h {
+  font-size: var(--type-small);
+  font-weight: 700;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--line);
+}
+.tradeoff .col-h.cost { color: var(--ink-3); }
+.tradeoff .col-h.gain { color: var(--accent-ink); background: var(--accent-softer); }
+.tradeoff .col-b {
+  font-size: var(--type-body);
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.5;
+}
+.tradeoff .col-b.gain { background: var(--accent-softer); }
+
+/* Annotation with dotted leader */
+.annot {
+  display: flex; align-items: center; gap: 12px;
+  font-size: var(--type-small);
+  color: var(--ink-3);
+}
+.annot .dot {
+  width: 10px; height: 10px; border-radius: 999px; background: var(--accent);
+  flex: 0 0 auto;
+}
+.annot .line {
+  flex: 0 0 60px;
+  border-top: 2px dashed var(--accent);
+}
+
+/* Top eyebrow row helper */
+.slide-head {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.slide-head .lead {
+  flex: 1 1 0;
+}
+.slide-head .right-meta {
+  font-size: var(--type-small);
+  color: var(--ink-4);
+  text-align: right;
+  flex: 0 0 auto;
+  min-width: 220px;
+  word-break: keep-all;
+}
+
+/* shared subtitle block under headline */
+.subhead {
+  font-size: var(--type-h3);
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ink-2);
+  margin: 16px 0 0;
+  letter-spacing: -0.015em;
+  max-width: 1500px;
+}
+
+/* small grid of two columns content */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+/* col head with eyebrow */
+.col-head {
+  font-size: var(--type-small);
+  font-weight: 700;
+  color: var(--accent-ink);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px;
+}
+.col-head::before {
+  content: ""; width: 8px; height: 8px; background: var(--accent); border-radius: 999px;
+}
+
+/* hero stat */
+.hero-stat {
+  display: flex; align-items: baseline; gap: 16px;
+}
+.hero-stat .v {
+  font-size: var(--type-num-lg);
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.hero-stat .k {
+  font-size: var(--type-body);
+  color: var(--ink-3);
+}
+</style>
+
+<!-- ============================================================
+     SLIDE 4 — Project 1 cover / summary
+============================================================ -->
+<section data-accent="purple" data-label="04 P1 Summary">
+  <div class="frame">
+
+    <!-- Top eyebrow row -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 36px;">
+      <span class="eyebrow chip">Project 1 · Summary</span>
+      <span class="small">Lead PM · 2022</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="title" style="max-width: 1400px;">
+      40초 로딩이<br/>
+      <span style="color: var(--accent-ink);">학습 이탈 리스크</span>가 된 순간
+    </h1>
+    <p class="body" style="margin-top: 24px; max-width: 1100px;">
+      데이터 경량화를 통한 고품질 그래픽 모바일·웹 퍼포먼스 개선
+    </p>
+
+    <!-- Body: left meta, right impact tiles -->
+    <div class="flex-row" style="margin-top: 64px; gap: 56px; align-items: stretch;">
+      <div style="flex: 0 0 460px;">
+        <div class="label" style="margin-bottom: 18px;">Project info</div>
+        <dl class="meta-table">
+          <dt>프로젝트</dt><dd>국내 대형 에듀테크 플랫폼<br/>초등 콘텐츠 리뉴얼</dd>
+          <dt>기간</dt><dd>2022.11</dd>
+          <dt>역할</dt><dd>Lead PM</dd>
+          <dt>인원</dt><dd>일러스트 2 · 디자인 2 · 개발 3 · QA 1 · 애니 4</dd>
+        </dl>
+      </div>
+
+      <div class="grow" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div class="metric">
+          <div class="k">로딩 속도</div>
+          <div class="v accent">−75<span style="font-size:40px;">%</span></div>
+          <div class="small">40s → 10s 내외</div>
+        </div>
+        <div class="metric">
+          <div class="k">계약</div>
+          <div class="v accent">+1<span style="font-size:40px;">년</span></div>
+          <div class="small">연장 확보</div>
+        </div>
+        <div class="metric" style="grid-column: 1 / -1;">
+          <div class="k">기술적 문제 해결</div>
+          <div class="h3" style="color: var(--ink); font-weight:700;">
+            Animated WebP 적용으로 <span class="hl">고품질 유지 + 로딩 시간 단축</span>을 동시에 확보
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 1 · 에듀테크 콘텐츠 리뉴얼</span></div>
+      <div>04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 5 — Project 1 Context & Problem
+============================================================ -->
+<section data-accent="purple" data-label="05 P1 Context">
+  <div class="frame">
+
+    <div class="slide-head">
+      <div class="lead">
+        <span class="eyebrow">Context & Problem</span>
+        <h2 class="headline" style="margin-top: 16px;">
+          2달간 개발한 고품질 그래픽이<br/>
+          오히려 <span style="color: var(--accent-ink);">학습자 이탈</span>을 키우고 있었습니다
+        </h2>
+        <p class="subhead">2주 안에 퍼포먼스 70% 단축이 필요한 상황</p>
+      </div>
+      <div class="right-meta">
+        <div style="font-weight:600; color:var(--ink-3);">성공 기준</div>
+        <div style="margin-top:4px; color:var(--ink-2);">현재 품질 유지<br/>+ 로딩 10초 내외</div>
+      </div>
+    </div>
+
+    <div class="flex-row" style="margin-top: 18px; gap: 32px; align-items: stretch; flex: 1;">
+
+      <!-- LEFT: funnel chart (visualization vocab from reference) -->
+      <div class="grow" style="display:flex; flex-direction:column; gap:18px;">
+        <div class="col-head">이탈 발생 지점</div>
+        <div class="funnel" style="height: 480px;">
+          <svg viewBox="0 0 700 380" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="funnelGrad" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#b175ff" stop-opacity=".35"/>
+                <stop offset="1" stop-color="#b175ff" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M 0 30 C 140 30, 180 30, 220 60 S 320 320, 460 330 L 700 350 L 700 380 L 0 380 Z"
+                  fill="url(#funnelGrad)"/>
+            <path d="M 0 30 C 140 30, 180 30, 220 60 S 320 320, 460 330 L 700 350"
+                  fill="none" stroke="#b175ff" stroke-width="3"/>
+            <circle cx="350" cy="240" r="8" fill="#fff" stroke="#b175ff" stroke-width="3"/>
+          </svg>
+          <div style="position:absolute; left:80px; top:36px; font-size:22px; color:var(--ink-4);">100%</div>
+          <div style="position:absolute; left:80px; top:160px; font-size:22px; color:var(--ink-4);">68%</div>
+          <div style="position:absolute; left:80px; top:300px; font-size:22px; color:var(--ink-4);">22%</div>
+          <div class="label-pt" style="left:300px; top:200px;">⚑ 40초 로딩 — 이탈 급증</div>
+          <div class="axis" style="bottom: 56px; left: 80px; right: 28px;"></div>
+          <div class="ticks">
+            <span>접속</span><span>로딩 시작</span><span>학습 진입</span><span>완주</span>
+          </div>
+        </div>
+        <div class="bubble accent" style="border-radius:14px; padding:18px 24px; text-align:center;">
+          <div class="head" style="margin-bottom:0; font-size: var(--type-body);">
+            로딩 중 학습자가 <span class="hl">오류로 인지</span>하여 이탈 발생
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: cause stack + competitor + constraint -->
+      <div style="flex: 0 0 720px; display:flex; flex-direction:column; gap: 20px;">
+        <div class="col-head">왜 이렇게까지 무거워졌나</div>
+
+        <!-- cascade of cause -> result -->
+        <div class="card" style="padding: 0; overflow: hidden;">
+          <div style="display:grid; grid-template-columns: 1fr; gap: 0;">
+            <div style="padding: 22px 28px; border-bottom: 1px solid var(--line-2); display:flex; gap:20px; align-items:center;">
+              <span class="tag">1</span>
+              <div>
+                <div class="h3" style="font-size: var(--type-body); font-weight:700;">고품질 그래픽 인터렉션 구현</div>
+                <div class="small" style="margin-top:4px;">PNG 시퀀스 용량 + 컷 수 증가</div>
+              </div>
+            </div>
+            <div style="padding: 22px 28px; border-bottom: 1px solid var(--line-2); display:flex; gap:20px; align-items:center;">
+              <span class="tag">2</span>
+              <div>
+                <div class="h3" style="font-size: var(--type-body); font-weight:700;">40초의 로딩 랙 발생</div>
+                <div class="small" style="margin-top:4px;">디바이스 호환성 이슈 동반</div>
+              </div>
+            </div>
+            <div style="padding: 22px 28px; display:flex; gap:20px; align-items:center; background: var(--accent-softer);">
+              <span class="tag accent">3</span>
+              <div>
+                <div class="h3" style="font-size: var(--type-body); font-weight:700; color: var(--accent-ink);">서비스 오픈 불가 위기</div>
+                <div class="small" style="margin-top:4px; color: var(--ink-2);">경쟁사 수준의 로딩 속도 개선 요구 + 2주 제약</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- competitor callout -->
+        <div class="bubble">
+          <div class="head" style="font-size: var(--type-small); color: var(--ink-4); font-weight:600;">경쟁사 벤치마크</div>
+          <div style="margin-top: 6px; font-size: var(--type-body); color: var(--ink); line-height:1.5;">
+            게임 개발 코드를 활용해 <span class="hl">고품질과 속도</span>를 모두 확보 중
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 1 · 에듀테크 콘텐츠 리뉴얼</span></div>
+      <div>05</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 6 — Project 1 Approach & Process
+============================================================ -->
+<section data-accent="purple" data-label="06 P1 Approach">
+  <div class="frame">
+
+    <div class="slide-head">
+      <div class="lead">
+        <span class="eyebrow">Approach & Process</span>
+        <h2 class="headline" style="margin-top: 16px;">
+          “용량이 문제일 것이다”는 틀렸습니다.<br/>
+          문제는 <span style="color: var(--accent-ink);">이미지를 불러오는 방식</span>이었습니다
+        </h2>
+      </div>
+      <div class="right-meta">
+        <div style="font-weight:600; color:var(--ink-3);">검토한 가설</div>
+        <div style="margin-top:4px; color:var(--ink-2);">4건 · 2주</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 12px; display:flex; flex-direction:column; gap: 22px; flex:1;">
+
+      <div class="col-head">가설 → 시도 → 결과</div>
+
+      <!-- hypothesis matrix -->
+      <div class="card" style="padding: 0; overflow:hidden;">
+        <div style="display:grid; grid-template-columns: 60px 1.4fr 1.4fr 1.6fr; align-items:stretch;">
+          <div style="padding: 18px 0 18px 24px; font-size: var(--type-small); font-weight:700; color: var(--ink-4); border-bottom: 1px solid var(--line);">#</div>
+          <div style="padding: 18px 20px; font-size: var(--type-small); font-weight:700; color: var(--ink-4); border-bottom: 1px solid var(--line);">시도한 인사이트</div>
+          <div style="padding: 18px 20px; font-size: var(--type-small); font-weight:700; color: var(--ink-4); border-bottom: 1px solid var(--line);">실험</div>
+          <div style="padding: 18px 20px; font-size: var(--type-small); font-weight:700; color: var(--ink-4); border-bottom: 1px solid var(--line);">결과</div>
+
+          <div style="padding: 22px 0 22px 24px; font-size: var(--type-small); color: var(--ink-4); border-bottom: 1px solid var(--line-2);">01</div>
+          <div style="padding: 22px 20px; font-size: var(--type-body); font-weight:600; border-bottom: 1px solid var(--line-2);">PNG 시퀀스 압축</div>
+          <div style="padding: 22px 20px; font-size: var(--type-small); color: var(--ink-3); border-bottom: 1px solid var(--line-2);">파일 단위 압축률 조정</div>
+          <div style="padding: 22px 20px; font-size: var(--type-small); color: var(--ink-3); border-bottom: 1px solid var(--line-2);">로딩 단축 효과 미미</div>
+
+          <div style="padding: 22px 0 22px 24px; font-size: var(--type-small); color: var(--ink-4); border-bottom: 1px solid var(--line-2);">02</div>
+          <div style="padding: 22px 20px; font-size: var(--type-body); font-weight:600; border-bottom: 1px solid var(--line-2);">컷 수 삭제</div>
+          <div style="padding: 22px 20px; font-size: var(--type-small); color: var(--ink-3); border-bottom: 1px solid var(--line-2);">시퀀스 프레임 축소</div>
+          <div style="padding: 22px 20px; font-size: var(--type-small); color: var(--ink-3); border-bottom: 1px solid var(--line-2);">고객사 기대 품질 저하 / 영업 리스크</div>
+
+          <div style="padding: 22px 0 22px 24px; font-size: var(--type-small); color: var(--ink-4); border-bottom: 1px solid var(--line-2);">03</div>
+          <div style="padding: 22px 20px; font-size: var(--type-body); font-weight:600; border-bottom: 1px solid var(--line-2);">하이브리드 렌더링 제안</div>
+          <div style="padding: 22px 20px; font-size: var(--type-small); color: var(--ink-3); border-bottom: 1px solid var(--line-2);">인터렉션은 코드 · 연출은 시퀀스</div>
+          <div style="padding: 22px 20px; font-size: var(--type-small); color: var(--ink-3); border-bottom: 1px solid var(--line-2);">리소스 재제작 → 일정상 무리, 차기 가이드로 이관</div>
+
+          <div style="padding: 22px 0 22px 24px; font-size: var(--type-small); color: var(--accent); font-weight: 700; background: var(--accent-softer);">04</div>
+          <div style="padding: 22px 20px; font-size: var(--type-body); font-weight:700; color: var(--accent-ink); background: var(--accent-softer);">신규 확장자 도입 검토</div>
+          <div style="padding: 22px 20px; font-size: var(--type-small); color: var(--ink-2); background: var(--accent-softer);">GIF · WebP 변환 사이트 리서치</div>
+          <div style="padding: 22px 20px; font-size: var(--type-body); font-weight:700; color: var(--accent-ink); background: var(--accent-softer);">Animated WebP 적용 →</div>
+        </div>
+      </div>
+
+      <!-- chosen solution highlight -->
+      <div style="display:flex; gap: 24px; align-items: stretch;">
+        <div class="card" style="flex:1; display:flex; align-items:center; gap: 24px;">
+          <div class="accent-pill">선정안</div>
+          <div>
+            <div class="h3" style="font-size: 28px;">Animated WebP로 전환</div>
+            <div class="small" style="margin-top: 6px;">디바이스 호환성 확인 + 품질 유지 가능한 유일한 옵션</div>
+          </div>
+        </div>
+        <div class="card" style="flex: 0 0 360px; display:flex; flex-direction:column; gap: 6px;">
+          <div class="label">탈락 사유 키워드</div>
+          <div class="body" style="font-size: var(--type-small); color: var(--ink-2);">
+            ① 효과 미미 · ② 품질 저하 · ③ 일정 부족
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 1 · 에듀테크 콘텐츠 리뉴얼</span></div>
+      <div>06</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 7 — Project 1 Results & Impact
+============================================================ -->
+<section data-accent="purple" data-label="07 P1 Results">
+  <div class="frame">
+
+    <div class="slide-head">
+      <div class="lead">
+        <span class="eyebrow">Results & Impact</span>
+        <h2 class="headline" style="margin-top: 16px;">
+          기다리는 학습에서<br/>
+          <span style="color: var(--accent-ink);">바로 진입하는 학습</span>으로
+        </h2>
+      </div>
+      <div class="right-meta">
+        <div style="font-weight:600; color:var(--ink-3);">의사결정 트레이드오프</div>
+        <div style="margin-top:4px; color:var(--ink-2);">품질 · 일정 · 기술 적용 가능성</div>
+      </div>
+    </div>
+
+    <div class="flex-row" style="margin-top: 12px; gap: 32px; align-items: stretch; flex: 1;">
+
+      <!-- LEFT: before / after bar -->
+      <div style="flex: 0 0 620px; display:flex; flex-direction:column; gap: 18px;">
+        <div class="col-head">로딩 시간</div>
+        <div class="barchart" style="height: 380px;">
+          <div class="bar-col">
+            <div class="bar-val">40s</div>
+            <div class="bar" style="height: 320px;"></div>
+            <div class="bar-lbl">
+              <span class="tag" style="margin-bottom:4px;">Before</span><br/>
+              <span style="font-size:22px;">PNG sequence</span>
+            </div>
+          </div>
+          <div style="align-self:center; padding: 0 8px;">
+            <div class="hero-stat">
+              <div class="v" style="font-size: 72px;">−75%</div>
+            </div>
+          </div>
+          <div class="bar-col">
+            <div class="bar-val accent">10s</div>
+            <div class="bar accent" style="height: 80px;"></div>
+            <div class="bar-lbl">
+              <span class="tag accent" style="margin-bottom:4px;">After</span><br/>
+              <span style="font-size:22px;">Animated WebP</span>
+            </div>
+          </div>
+        </div>
+        <p class="small" style="text-align:center;">디바이스 호환성 확인 + 로딩 시간 40초 → 10초 내외</p>
+      </div>
+
+      <!-- RIGHT: stakeholder impact -->
+      <div class="grow" style="display:flex; flex-direction:column; gap: 18px;">
+        <div class="col-head">이해관계자별 임팩트</div>
+
+        <div class="card" style="padding: 0; overflow: hidden;">
+          <table class="cmp-table">
+            <thead>
+              <tr>
+                <th>이해관계자</th>
+                <th class="before">Before</th>
+                <th class="after">After</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label-col">학습자</td>
+                <td>긴 로딩 → 오류로 인지</td>
+                <td class="after-col">빠르게 콘텐츠 진입</td>
+              </tr>
+              <tr>
+                <td class="label-col">고객사</td>
+                <td>경쟁사 대비 속도 문제 제기</td>
+                <td class="after-col">요구 수준 충족 · 1년 계약 연장</td>
+              </tr>
+              <tr>
+                <td class="label-col">제작팀</td>
+                <td>원인 불명확한 기술 리스크</td>
+                <td class="after-col">확장자 전환 가이드로 반복 적용</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bubble accent" style="display:flex; gap: 18px; align-items:center;">
+          <div class="h3" style="font-size: 28px; color: var(--accent-ink);">Learning</div>
+          <div class="body" style="font-size: var(--type-small);">
+            “용량”이 아니라 <span class="hl">불러오는 방식</span>이 병목 — 첫 가설을 의심하는 것이 가장 빠른 길이었다
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 1 · 에듀테크 콘텐츠 리뉴얼</span></div>
+      <div>07</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 8 — Project 2 cover / summary
+============================================================ -->
+<section data-accent="sky" data-label="08 P2 Summary">
+  <div class="frame">
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 36px;">
+      <span class="eyebrow chip">Project 2 · Summary</span>
+      <span class="small">Lead PM · 2023</span>
+    </div>
+
+    <h1 class="title" style="max-width: 1500px;">
+      수정이 길어진다는 건<br/>
+      <span style="color: var(--accent-ink);">앞단에서 놓친 게 있다</span>는 뜻
+    </h1>
+    <p class="body" style="margin-top: 24px; max-width: 1100px;">
+      신규 프로세스 도입으로 후반부 대규모 수정 해결 — 콘티 컨펌 단계 신설
+    </p>
+
+    <div class="flex-row" style="margin-top: 64px; gap: 56px; align-items: stretch;">
+      <div style="flex: 0 0 460px;">
+        <div class="label" style="margin-bottom: 18px;">Project info</div>
+        <dl class="meta-table">
+          <dt>프로젝트</dt><dd>에듀테크 콘텐츠 제작 프로세스 개선</dd>
+          <dt>기간</dt><dd>2023</dd>
+          <dt>역할</dt><dd>Lead PM</dd>
+          <dt>인원</dt><dd>기획 · 디자인 · 애니메이션 협업</dd>
+        </dl>
+      </div>
+
+      <div class="grow" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div class="metric">
+          <div class="k">피드백 라운드</div>
+          <div style="display:flex; align-items:baseline; gap: 14px;">
+            <span style="font-size:36px; color:var(--ink-4); font-weight:700; text-decoration: line-through;">4–5회</span>
+            <span class="arrow-r"></span>
+            <span class="v accent" style="font-size: 54px;">2–3회</span>
+          </div>
+          <div class="small">사전 합의 기준 명확화</div>
+        </div>
+        <div class="metric">
+          <div class="k">후반 수정 기간</div>
+          <div class="v accent">−50<span style="font-size:40px;">%</span></div>
+          <div class="small">약 1주 → 절반 이하</div>
+        </div>
+        <div class="metric" style="grid-column: 1 / -1;">
+          <div class="k">프로세스 혁신</div>
+          <div class="h3" style="color: var(--ink); font-weight:700;">
+            <span class="hl">콘티 컨펌 단계</span>를 앞단에 추가해 후반부 대규모 수정·작업자 이탈 차단
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 2 · 제작 프로세스 혁신</span></div>
+      <div>08</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 9 — Project 2 Context & Problem
+============================================================ -->
+<section data-accent="sky" data-label="09 P2 Context">
+  <div class="frame">
+
+    <div class="slide-head">
+      <div class="lead">
+        <span class="eyebrow">Context & Problem</span>
+        <h2 class="headline" style="margin-top: 16px;">
+          줄글 중심 기획서의 해석 차이가<br/>
+          완성본 단계의 <span style="color: var(--accent-ink);">대규모 수정</span>으로 이어졌습니다
+        </h2>
+        <p class="subhead">제작 전 시각 합의가 필요한 상황</p>
+      </div>
+      <div class="right-meta" style="min-width: 240px;">
+        <div style="font-weight:600; color:var(--ink-3);">성공 기준</div>
+        <div style="margin-top:4px; color:var(--ink-2);">1차 피드백 1일 내 처리<br/>수정 라운드 축소<br/>작업자 이탈 방지</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 8px; display:flex; flex-direction: column; gap: 24px; flex:1;">
+
+      <div class="col-head">기존 프로세스 — 피드백이 끝에서 누적</div>
+
+      <!-- existing process flow -->
+      <div class="flow">
+        <div class="step">
+          <div class="n">01</div>
+          <div class="t">기획서 전달</div>
+          <div class="d">줄글·간단 이미지</div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <div class="t">애니 제작</div>
+          <div class="d">기획·제작 간 갭 발생</div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <div class="t">완성본 검수</div>
+          <div class="d">고객사 첫 시각 확인</div>
+        </div>
+        <div class="step" style="background: #ffe9eb;">
+          <div class="n" style="color:#c8364c;">04</div>
+          <div class="t">대규모 수정 피드백</div>
+          <div class="d" style="color:#a4304a;">캐릭터 위치 변경 등 5차 누적</div>
+        </div>
+      </div>
+
+      <!-- two-column: cause cards -->
+      <div class="two-col" style="margin-top: 8px;">
+        <div class="card flat">
+          <div class="h3" style="font-size: var(--type-body);">기획서 상세도 부족</div>
+          <p class="small" style="margin-top: 10px;">
+            줄글 또는 간략 이미지로 전달된 기획서는 기획과 제작 사이의 해석 갭을 만들었고,
+            완성본 단계에서야 차이가 드러났습니다.
+          </p>
+        </div>
+        <div class="card flat">
+          <div class="h3" style="font-size: var(--type-body);">주간 정기 배포의 제약</div>
+          <p class="small" style="margin-top: 10px;">
+            매주 정해진 일정에 맞춰 배포해야 했기에 후반 수정 시간은 부족하고,
+            반복 수정으로 작업자 이탈 위험이 누적되었습니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- impact bar -->
+      <div style="display:flex; gap: 24px; margin-top: 4px;">
+        <div class="metric" style="flex: 1; background: #ffeef0;">
+          <div class="k" style="color:#a4304a;">피드백 누적</div>
+          <div class="v" style="color:#c8364c;">5차</div>
+        </div>
+        <div class="metric" style="flex: 1; background: #ffeef0;">
+          <div class="k" style="color:#a4304a;">작업자 이탈</div>
+          <div class="v" style="color:#c8364c;">발생</div>
+        </div>
+        <div class="metric" style="flex: 1; background: #ffeef0;">
+          <div class="k" style="color:#a4304a;">후반 수정 기간</div>
+          <div class="v" style="color:#c8364c;">약 1주</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 2 · 제작 프로세스 혁신</span></div>
+      <div>09</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 10 — Project 2 Approach (hypotheses + customer quotes)
+============================================================ -->
+<section data-accent="sky" data-label="10 P2 Approach">
+  <div class="frame">
+
+    <div class="slide-head">
+      <div class="lead">
+        <span class="eyebrow">Approach & Process</span>
+        <h2 class="headline" style="margin-top: 16px;">
+          매번 협의하는 방식은 임시 대응일 뿐,<br/>
+          <span style="color: var(--accent-ink);">반복 문제</span>를 줄이지 못했습니다
+        </h2>
+      </div>
+      <div class="right-meta" style="min-width: 240px;">
+        <div style="font-weight:600; color:var(--ink-3);">검증한 가설</div>
+        <div style="margin-top:4px; color:var(--ink-2);">2건 · 인터뷰 + 벤치마크</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 12px; display:grid; grid-template-columns: 1fr 1fr; gap: 32px; flex:1;">
+
+      <!-- LEFT: two hypotheses -->
+      <div style="display:flex; flex-direction:column; gap: 22px;">
+        <div class="col-head">가설 검증</div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap: 12px;">
+          <div style="display:flex; gap: 14px; align-items:center;">
+            <span class="tag">가설 1</span>
+            <div class="h3" style="font-size: var(--type-body);">오픈 일정 리스크 고지 + 피드백 거부</div>
+          </div>
+          <p class="small" style="line-height:1.55;">
+            일정 부족을 이유로 수정을 거부하려 했으나, 고객사 상위 의사결정권자의 요구로
+            <span style="color:#c8364c; font-weight:600;">수정 작업이 매주 누적되는 악순환</span> 발생.
+          </p>
+        </div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap: 12px; border: 2px solid var(--accent); box-shadow: 0 2px 4px rgba(15,17,21,.05), 0 18px 40px rgba(26,188,254,0.18);">
+          <div style="display:flex; gap: 14px; align-items:center;">
+            <span class="tag accent">가설 2 · 채택</span>
+            <div class="h3" style="font-size: var(--type-body); color: var(--accent-ink);">콘티 검수 단계 도입 리서치</div>
+          </div>
+          <p class="small" style="line-height:1.55;">
+            경쟁사 및 내부 작업자 인터뷰를 통해, 고품질 애니메이션 제작 시
+            <span class="hl">콘티 단계의 사전 컨펌이 필수적</span>임을 확인.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT: customer quotes -->
+      <div style="display:flex; flex-direction:column; gap: 18px;">
+        <div class="col-head">고객사 인터뷰</div>
+
+        <div class="bubble">
+          <div class="body" style="font-size: var(--type-body); color: var(--ink); line-height: 1.5;">
+            “우리도 전문가가 아니라서<br/>
+            <span class="hl">완성본을 봐야 수정할 게 보여요.</span>”
+          </div>
+          <div class="who">— 고객사 콘텐츠 담당</div>
+        </div>
+
+        <div class="bubble">
+          <div class="body" style="font-size: var(--type-body); color: var(--ink); line-height: 1.5;">
+            “일정 부족하면 오픈 후 수정해주세요.<br/>
+            <span class="hl">상위 컨펌자 의견</span>입니다.”
+          </div>
+          <div class="who">— 고객사 PM</div>
+        </div>
+
+        <div class="bubble accent">
+          <div class="body" style="font-size: var(--type-body); color: var(--ink); line-height: 1.5;">
+            “기획서는 동일한 양식인데<br/>
+            <span class="hl">콘티를 간략하게 제작해서 컨펌하는</span> 업체도 있어요.”
+          </div>
+          <div class="who">— 동종업계 사례 인용</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 2 · 제작 프로세스 혁신</span></div>
+      <div>10</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 11 — Project 2 Results (process before/after)
+============================================================ -->
+<section data-accent="sky" data-label="11 P2 Results">
+  <div class="frame">
+
+    <div class="slide-head">
+      <div class="lead">
+        <span class="eyebrow">Results</span>
+        <h2 class="headline" style="margin-top: 16px;">
+          앞단에 한 단계를 더했더니,<br/>
+          <span style="color: var(--accent-ink);">전체 일정</span>은 줄었습니다
+        </h2>
+        <p class="subhead">더 많은 회의 대신, 사전 공유 콘티 1건으로 모두가 납득하도록</p>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction: column; gap: 28px; flex:1; margin-top: 12px;">
+
+      <!-- Before flow -->
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 14px;">
+          <span class="label">Before</span>
+          <span class="small">완성본 기준 협의</span>
+        </div>
+        <div class="flow">
+          <div class="step"><div class="n">01</div><div class="t">기획서 전달</div></div>
+          <div class="step"><div class="n">02</div><div class="t">애니 제작</div></div>
+          <div class="step"><div class="n">03</div><div class="t">완성본 검수</div></div>
+          <div class="step" style="background:#ffeef0;"><div class="n" style="color:#c8364c;">04</div><div class="t">대규모 수정 5차+</div></div>
+        </div>
+      </div>
+
+      <!-- After flow -->
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 14px;">
+          <span class="label" style="color: var(--accent-ink);">After</span>
+          <span class="small">콘티 히스토리 기준 협의</span>
+        </div>
+        <div class="flow">
+          <div class="step"><div class="n">01</div><div class="t">기획서 전달</div></div>
+          <div class="step" style="background: var(--accent-softer); border: 1px solid var(--accent-soft);">
+            <div class="n">02</div><div class="t" style="color: var(--accent-ink);">콘티 컨펌 ★</div>
+            <div class="d">사전 시각 합의</div>
+          </div>
+          <div class="step"><div class="n">03</div><div class="t">애니 제작</div></div>
+          <div class="step"><div class="n">04</div><div class="t">세부 수정 2–3차</div></div>
+        </div>
+      </div>
+
+      <!-- impact metrics -->
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 8px;">
+        <div class="metric">
+          <div class="k">수정 라운드</div>
+          <div style="display:flex; align-items:baseline; gap: 12px;">
+            <span style="font-size:32px; color:var(--ink-4); text-decoration:line-through;">5–6차</span>
+            <span class="arrow-r"></span>
+            <span class="v accent" style="font-size: 48px;">2–3차</span>
+          </div>
+        </div>
+        <div class="metric">
+          <div class="k">후반 수정 기간</div>
+          <div class="v accent">−50<span style="font-size:32px;">%</span></div>
+          <div class="small">약 1주 → 절반 이하</div>
+        </div>
+        <div class="metric">
+          <div class="k">커뮤니케이션 기준</div>
+          <div class="h3" style="font-size: 26px; color: var(--ink);">완성본 → <span class="hl">콘티 히스토리</span></div>
+          <div class="small">협의 기준 명확화</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 2 · 제작 프로세스 혁신</span></div>
+      <div>11</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 12 — Project 2 Impact & Trade-off
+============================================================ -->
+<section data-accent="sky" data-label="12 P2 Tradeoff">
+  <div class="frame">
+
+    <div class="slide-head">
+      <div class="lead">
+        <span class="eyebrow">Impact & Trade-off</span>
+        <h2 class="headline" style="margin-top: 16px;">
+          다 받는 피드백보다,<br/>
+          <span style="color: var(--accent-ink);">끝낼 수 있는 기준</span>
+        </h2>
+        <p class="subhead">콘티 비용은 늘어도, 수정·커뮤니케이션·이탈 리스크가 함께 줄어드는 구조</p>
+      </div>
+    </div>
+
+    <div style="display:flex; gap: 32px; margin-top: 16px; flex:1; align-items: stretch;">
+
+      <!-- LEFT: trade-off table -->
+      <div style="flex: 1; display:flex; flex-direction:column; gap: 14px;">
+        <div class="col-head">비용 ↔ 리스크 트레이드오프</div>
+
+        <div class="tradeoff">
+          <div class="col-h cost">−  비용 증가</div>
+          <div class="col-h gain">+  리스크 감소</div>
+
+          <div class="col-b">콘티 단계 추가 제작 비용</div>
+          <div class="col-b gain">후반부 수정 비용 ↓</div>
+
+          <div class="col-b">초반 일정 소요 (콘티 컨펌)</div>
+          <div class="col-b gain">매주 누적 수정 커뮤니케이션 ↓</div>
+
+          <div class="col-b">고객사 컨펌 단계 추가</div>
+          <div class="col-b gain">작업자 이탈 리스크 ↓</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: stakeholder cards -->
+      <div style="flex: 1; display:flex; flex-direction:column; gap: 14px;">
+        <div class="col-head">이해관계자별 변화</div>
+
+        <div class="card" style="display:flex; gap: 24px; align-items:center;">
+          <div class="tag">고객사</div>
+          <div style="flex:1;">
+            <div class="h3" style="font-size: var(--type-body);">수정 범위 예측 가능</div>
+            <div class="small" style="margin-top: 4px;">콘티 단계에서 변경점 합의 → 후반 무필터 피드백 차단</div>
+          </div>
+        </div>
+
+        <div class="card" style="display:flex; gap: 24px; align-items:center;">
+          <div class="tag">작업자</div>
+          <div style="flex:1;">
+            <div class="h3" style="font-size: var(--type-body);">반복 수정 피로 ↓</div>
+            <div class="small" style="margin-top: 4px;">이탈 리스크 감소, 안정적 일정 운영 가능</div>
+          </div>
+        </div>
+
+        <div class="card" style="display:flex; gap: 24px; align-items:center; background: var(--accent-softer); border: 1px solid var(--accent-soft); box-shadow:none;">
+          <div class="tag accent">PM</div>
+          <div style="flex:1;">
+            <div class="h3" style="font-size: var(--type-body); color: var(--accent-ink);">협의 기준 명확화</div>
+            <div class="small" style="margin-top: 4px;">콘티 히스토리 기반 의사결정 — 끝낼 수 있는 단계 정의</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 2 · 제작 프로세스 혁신</span></div>
+      <div>12</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 13 — Project 3 cover / summary
+============================================================ -->
+<section data-accent="green" data-label="13 P3 Summary">
+  <div class="frame">
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 36px;">
+      <span class="eyebrow chip">Project 3 · Summary</span>
+      <span class="small">PM · 2024</span>
+    </div>
+
+    <h1 class="title" style="max-width: 1500px;">
+      멈춘 파이프라인을<br/>
+      <span style="color: var(--accent-ink);">정상화</span>하고 후임에게 이관하기까지
+    </h1>
+    <p class="body" style="margin-top: 24px; max-width: 1100px;">
+      월 20건+ 콘텐츠 파이프라인 정상화 및 주니어 PM 운영 이관
+    </p>
+
+    <div class="flex-row" style="margin-top: 64px; gap: 56px; align-items: stretch;">
+      <div style="flex: 0 0 460px;">
+        <div class="label" style="margin-bottom: 18px;">Project info</div>
+        <dl class="meta-table">
+          <dt>프로젝트</dt><dd>초등 대상 디지털 학습 플랫폼<br/>수학 콘텐츠 운영</dd>
+          <dt>기간</dt><dd>2024.12</dd>
+          <dt>역할</dt><dd>조직 관리 및 위기 대응</dd>
+          <dt>인원</dt><dd>일러스트 1 · 디자인 1 · QA 1 · 애니 2</dd>
+        </dl>
+      </div>
+
+      <div class="grow" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div class="metric">
+          <div class="k">후반 인력</div>
+          <div class="v accent">−50<span style="font-size:40px;">%</span></div>
+          <div class="small">2배 증가 → 절반 축소</div>
+        </div>
+        <div class="metric">
+          <div class="k">수정 라운드</div>
+          <div class="v accent">−70<span style="font-size:40px;">%</span></div>
+          <div class="small">7–8회 → 2–3회</div>
+        </div>
+        <div class="metric" style="grid-column: 1 / -1;">
+          <div class="k">정상 오픈</div>
+          <div class="h3" style="color: var(--ink); font-weight:700;">
+            <span class="accent-num" style="font-size:36px;">140건</span> 안정 오픈 + 주니어 PM 운영 <span class="hl">이관 완료</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 3 · 파이프라인 정상화</span></div>
+      <div>13</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 14 — Project 3 Context (vicious cycle)
+============================================================ -->
+<section data-accent="green" data-label="14 P3 Context">
+  <div class="frame">
+
+    <div class="slide-head">
+      <div class="lead">
+        <span class="eyebrow">Context & Problem</span>
+        <h2 class="headline" style="margin-top: 16px;">
+          전임 운영에서 누적된 일정 병목으로<br/>
+          파이프라인이 <span style="color: var(--accent-ink);">멈춰 있었습니다</span>
+        </h2>
+        <p class="subhead">오픈 일정 안에서 빠른 복구가 필요한 상황 — 메인 PM 업무 병행 중 긴급 투입</p>
+      </div>
+    </div>
+
+    <div style="display:flex; gap: 36px; margin-top: 16px; flex:1; align-items:stretch;">
+
+      <!-- LEFT: vicious cycle ring -->
+      <div style="flex: 0 0 640px; display:flex; flex-direction:column; gap: 16px;">
+        <div class="col-head">악순환의 고리</div>
+        <div class="card flat" style="flex:1; display:flex; align-items:center; justify-content:center; padding: 20px;">
+          <div class="cycle" style="width: 560px; height: 460px;">
+            <div class="node" style="left: 50%; top: 0; transform: translateX(-50%);">
+              <span class="nbr">01</span>최종 디자인<br/>컨펌 지연
+            </div>
+            <div class="node" style="right: 0; top: 35%;">
+              <span class="nbr">02</span>피드백<br/>무필터 수용
+            </div>
+            <div class="node" style="right: 8%; bottom: 0;">
+              <span class="nbr">03</span>인력 증가<br/>(2배)
+            </div>
+            <div class="node" style="left: 8%; bottom: 0;">
+              <span class="nbr">04</span>작업자<br/>이탈
+            </div>
+            <div class="node" style="left: 0; top: 35%;">
+              <span class="nbr">05</span>파이프라인<br/>마비
+            </div>
+            <div class="center">파이프라인<br/>붕괴</div>
+
+            <!-- circular dashed track -->
+            <svg style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;" viewBox="0 0 560 460">
+              <ellipse cx="280" cy="230" rx="220" ry="180" fill="none" stroke="#40a07b" stroke-width="2" stroke-dasharray="6 8" opacity=".5"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: scale + numbers -->
+      <div class="grow" style="display:flex; flex-direction:column; gap: 18px;">
+        <div class="col-head">운영 스케일 · 현장 수치</div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="metric">
+            <div class="k">주간 정기 오픈</div>
+            <div class="v">주 4건</div>
+          </div>
+          <div class="metric">
+            <div class="k">누적 자산</div>
+            <div class="v">280<span style="font-size:32px;">건+</span></div>
+            <div class="small">HTML 콘텐츠</div>
+          </div>
+          <div class="metric">
+            <div class="k">누적 자산</div>
+            <div class="v">400<span style="font-size:32px;">건+</span></div>
+            <div class="small">영상 콘텐츠</div>
+          </div>
+          <div class="metric" style="background:#ffeef0;">
+            <div class="k" style="color:#a4304a;">컨펌 누적</div>
+            <div class="v" style="color:#c8364c;">5–6차</div>
+          </div>
+        </div>
+
+        <div class="card" style="background: #ffeef0; box-shadow:none; padding: 22px 28px;">
+          <div class="h3" style="font-size: var(--type-body); color: #a4304a;">상태</div>
+          <div class="small" style="margin-top: 6px; color: #71223a;">
+            후반 인력 2배 증가 · 수정 라운드 7–8회 · 메인 PM이 다른 업무와 병행 중 긴급 투입된 상황
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 3 · 파이프라인 정상화</span></div>
+      <div>14</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 15 — Project 3 Approach (3-column analysis)
+============================================================ -->
+<section data-accent="green" data-label="15 P3 Approach">
+  <div class="frame">
+
+    <div class="slide-head">
+      <div class="lead">
+        <span class="eyebrow">Approach & Process</span>
+        <h2 class="headline" style="margin-top: 16px;">
+          쉬운 수정이라는 판단이,<br/>
+          필요한 <span style="color: var(--accent-ink);">커뮤니케이션</span>을 늦췄습니다
+        </h2>
+        <p class="subhead">디자인 최종 확정 지연이 후반 수정 라운드를 만드는 구조였다</p>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin-top: 18px; flex:1;">
+
+      <!-- column 1: observed problem -->
+      <div class="card" style="display:flex; flex-direction:column; gap: 14px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span class="tag">01</span>
+          <div class="label" style="color: var(--accent-ink);">관찰한 문제</div>
+        </div>
+        <div class="h3" style="font-size: var(--type-body);">
+          단순 수정도 고객사 재확인 대상으로 남아 <span class="hl">5–6차 컨펌</span>으로 이어짐
+        </div>
+        <div class="small" style="line-height: 1.55;">
+          후반 수정 라운드가 늘어나면서, 1차와 상충되거나 2차에서 신규로 들어온 피드백·원복 요청이
+          그대로 작업자에게 전달되고 있었음.
+        </div>
+      </div>
+
+      <!-- column 2: analysis method -->
+      <div class="card" style="display:flex; flex-direction:column; gap: 14px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span class="tag">02</span>
+          <div class="label" style="color: var(--accent-ink);">분석 방법</div>
+        </div>
+        <div class="h3" style="font-size: var(--type-body);">
+          <span class="hl">컨펌 히스토리 역추적</span> + 1차·2차 피드백 비교 분석
+        </div>
+        <ol class="numbered" style="gap:10px; margin-top: 4px;">
+          <li style="font-size: 22px;"><span class="n" style="width:28px; height:28px; font-size:18px;">1</span>차수별 피드백 항목을 분류·태깅</li>
+          <li style="font-size: 22px;"><span class="n" style="width:28px; height:28px; font-size:18px;">2</span>신규·상충·원복 요청 반복 패턴 확인</li>
+          <li style="font-size: 22px;"><span class="n" style="width:28px; height:28px; font-size:18px;">3</span>최종 미확정 항목의 책임 라인 추적</li>
+        </ol>
+      </div>
+
+      <!-- column 3: insight -->
+      <div class="card" style="display:flex; flex-direction:column; gap: 14px; background: var(--accent-softer); border: 1px solid var(--accent-soft); box-shadow: none;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span class="tag accent">03</span>
+          <div class="label" style="color: var(--accent-ink);">핵심 인사이트</div>
+        </div>
+        <div class="h3" style="font-size: var(--type-body); color: var(--accent-ink);">
+          피드백이 어떤 기준으로 재확인되고, 어떤 항목이 <span style="text-decoration:underline;">최종 확정되지 못했는지</span>가 병목
+        </div>
+        <div class="small" style="line-height: 1.55;">
+          → 모든 피드백을 그대로 작업자에게 넘기지 않고, <strong style="color: var(--accent-ink);">1차 필터링 후
+          필요 시안만 컨펌</strong>하는 시스템이 필요했다.
+        </div>
+      </div>
+    </div>
+
+    <!-- bottom callout -->
+    <div class="bubble accent" style="margin-top: 18px; display:flex; gap: 18px; align-items:center;">
+      <div class="h3" style="font-size: 28px; color: var(--accent-ink); flex: 0 0 auto;">Decision</div>
+      <div class="body" style="font-size: var(--type-small);">
+        <span class="hl">2차 피드백 필터링 시스템</span>을 도입해 PM이 신규·상충·원복 요청을 분류한 뒤 작업자에게 전달
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 3 · 파이프라인 정상화</span></div>
+      <div>15</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 16 — Project 3 Impact (final)
+============================================================ -->
+<section data-accent="green" data-label="16 P3 Impact">
+  <div class="frame">
+
+    <div class="slide-head">
+      <div class="lead">
+        <span class="eyebrow">Impact & Handoff</span>
+        <h2 class="headline" style="margin-top: 16px;">
+          피드백을 그대로 넘기지 않자,<br/>
+          <span style="color: var(--accent-ink);">파이프라인</span>이 다시 돌기 시작했습니다
+        </h2>
+        <p class="subhead">정상 오픈 회복 + 주니어 PM에게 운영 이관까지</p>
+      </div>
+    </div>
+
+    <div style="display:flex; gap: 32px; margin-top: 18px; flex:1; align-items:stretch;">
+
+      <!-- LEFT: before/after comparison table -->
+      <div style="flex: 1.2; display:flex; flex-direction:column; gap: 14px;">
+        <div class="col-head">필터링 시스템 도입 전 / 후</div>
+
+        <div class="card" style="padding: 0; overflow: hidden;">
+          <table class="cmp-table">
+            <thead>
+              <tr>
+                <th>지표</th>
+                <th class="before">Before</th>
+                <th class="after">After</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label-col">컨펌 라운드</td>
+                <td>5–6차 (불필요 포함)</td>
+                <td class="after-col">2–3차 <span class="delta">−70%</span></td>
+              </tr>
+              <tr>
+                <td class="label-col">피드백 처리</td>
+                <td>필터링 없이 전체 전달</td>
+                <td class="after-col">2차 필터링 + 시안 컨펌</td>
+              </tr>
+              <tr>
+                <td class="label-col">후반 인력</td>
+                <td>2배 증가</td>
+                <td class="after-col">절반 축소 <span class="delta">−50%</span></td>
+              </tr>
+              <tr>
+                <td class="label-col">오픈</td>
+                <td>지연 누적</td>
+                <td class="after-col">140건 정상 오픈</td>
+              </tr>
+              <tr>
+                <td class="label-col">운영 이관</td>
+                <td>—</td>
+                <td class="after-col">주니어 PM 이관 완료</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- RIGHT: hero stat + learning -->
+      <div style="flex: 1; display:flex; flex-direction:column; gap: 18px;">
+        <div class="col-head">정상화 지표</div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap: 8px; background: var(--accent-softer); border: 1px solid var(--accent-soft); box-shadow: none; padding: 36px;">
+          <div class="label" style="color: var(--accent-ink);">정상 오픈</div>
+          <div style="font-size: 96px; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.04em;">
+            140<span style="font-size:48px;">건</span>
+          </div>
+          <div class="small" style="margin-top: 6px;">파이프라인 회복 후 안정 오픈 누적</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="metric">
+            <div class="k">수정 라운드</div>
+            <div class="v accent">−70<span style="font-size:28px;">%</span></div>
+          </div>
+          <div class="metric">
+            <div class="k">후반 인력</div>
+            <div class="v accent">−50<span style="font-size:28px;">%</span></div>
+          </div>
+        </div>
+
+        <div class="bubble accent" style="display:flex; gap: 14px; align-items:center;">
+          <div class="h3" style="font-size: 26px; color: var(--accent-ink); flex: 0 0 auto;">Learning</div>
+          <div class="body" style="font-size: var(--type-small);">
+            PM의 역할은 <span class="hl">모든 피드백을 전달</span>하는 게 아니라, <span class="hl">끝낼 수 있는 기준</span>을 만드는 것
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <div class="seg"><span class="dot"></span><span>Project 3 · 파이프라인 정상화</span></div>
+      <div>16</div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
